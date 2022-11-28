@@ -169,11 +169,11 @@ https://templatemo.com/tm-507-victory
                 <div class="col-md-4 col-sm-12">
                     <div class="right-info">
                         <h4>Reservation</h4>
-                        <form id="form-submit" action="" method="get">
+                        <form id="form-submit" action="make_reservation.php" method="get">
                             <div class="row">
                                 <div class="col-md-6">
                                     <fieldset>
-                                        <select required name='day' onchange='this.form.()'>
+                                        <select required name='day' name='day' onchange='this.form.()'>
                                             <option value="">Select day</option>
                                             <option value="Monday">Monday</option>
                                             <option value="Tuesday">Tuesday</option>
@@ -187,15 +187,15 @@ https://templatemo.com/tm-507-victory
                                 </div>
                                 <div class="col-md-6">
                                     <fieldset>
-                                        <select required name='hour' onchange='this.form.()'>
+                                        <select required name='hour' name='hour' onchange='this.form.()'>
                                             <option value="">Select hour</option>
-                                            <option value="10-00">10:00</option>
-                                            <option value="12-00">12:00</option>
-                                            <option value="14-00">14:00</option>
-                                            <option value="16-00">16:00</option>
-                                            <option value="18-00">18:00</option>
-                                            <option value="20-00">20:00</option>
-                                            <option value="22-00">22:00</option>
+                                            <option value="10:00">10:00</option>
+                                            <option value="12:00">12:00</option>
+                                            <option value="14:00">14:00</option>
+                                            <option value="16:00">16:00</option>
+                                            <option value="18:00">18:00</option>
+                                            <option value="20:00">20:00</option>
+                                            <option value="22:00">22:00</option>
                                         </select>
                                     </fieldset>
                                 </div>

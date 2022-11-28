@@ -93,7 +93,7 @@ https://templatemo.com/tm-507-victory
                     <div class="section-heading">
                         <h2>Message</h2>
                     </div>
-                    <form id="contact" action="" method="post">
+                    <form id="contact" action="contact_us.php" method="post">
                         <div class="row">
                             <div class="col-md-6">
                                 <fieldset>
