@@ -80,6 +80,7 @@ class DB
                 'display_name' => $row ['display_name'],
                 'author' => $row ['author'],
                 'image' => $row['image'],
+                'image_blog_entries' => $row['image_blog_entries'],
                 'text' => $row ['text'],
                 'date' => $row ['date']
 
@@ -107,6 +108,52 @@ class DB
         }
         return $menuItems;
     }
+
+    public function getMeals($title)
+    {
+        $mealsItems = [];
+        $sql = "SELECT M.*, T.title  FROM restaurant.meals AS M INNER JOIN type_meals_menu AS T ON M.type_id=T.id WHERE T.title ='".$title."'";
+        $query = $this->connection->query($sql);
+
+        while ($row = $query->fetch()) {
+            $mealsItems[] = [
+                'id'=>$row ['id'],
+                'name'=>$row ['name'],
+                'description' => $row ['description'],
+                'price' => $row['price'],
+                'image' => $row['image'],
+                'type_id'=> $row['type_id']
+
+
+
+            ];
+
+        }
+        return $mealsItems;
+    }
+
+    public function getTypeMealsMenu()
+    {
+        $typeMealsItems = [];
+        $sql = "SELECT * FROM type_meals_menu";
+        $query = $this->connection->query($sql);
+
+        while ($row = $query->fetch()) {
+            $typeMealsItems = [
+                'id'=>$row ['id'],
+                'title'=>$row ['title'],
+                'image' => $row['image'],
+                'alt'=> $row['alt']
+
+
+
+            ];
+
+        }
+        return $typeMealsItems;
+    }
+
+
 
 
 

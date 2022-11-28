@@ -1,3 +1,17 @@
+<?php
+include_once "db_connect.php";
+
+
+$db=$GLOBALS['db'];
+$menuItemsNew = $db->getMenu();
+$BmealsItemsNew = $db->getMeals('Breakfast Menu');
+$LmealsItemsNew = $db->getMeals('Lunch Menu');
+$DmealsItemsNew = $db->getMeals('Dinner Menu');
+
+
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -41,10 +55,16 @@ https://templatemo.com/tm-507-victory
                 <!--/.navbar-header-->
                 <div id="main-nav" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="menu.php">Our Menus</a></li>
-                        <li><a href="blog.php">Blog Entries</a></li>
-                        <li><a href="contact.php">Contact Us</a></li>
+                        <?php
+                        foreach ($menuItemsNew as $m_Item){
+
+                            ?>
+                            <li><a href="<?php echo $m_Item['link']; ?> "><?php echo $m_Item['display_name']; ?> </a></li>
+                            <?php
+
+                        }
+                        ?>
+
                     </ul>
                 </div>
                 <!--/.navbar-collapse-->
@@ -68,7 +88,6 @@ https://templatemo.com/tm-507-victory
     </section>
 
 
-
     <section class="breakfast-menu">
         <div class="container">
             <div class="row">
@@ -77,45 +96,36 @@ https://templatemo.com/tm-507-victory
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="left-image">
-                                    <img src="img/breakfast_menu.jpg" alt="Breakfast">
+
+                                    <img src="img/breakfast_menu.jpg" alt="">
                                 </div>
                             </div>
+
                             <div class="col-md-7">
+
                                 <h2>Breakfast Menu</h2>
+
                                 <div id="owl-breakfast" class="owl-carousel owl-theme">
+                                    <?php
+                                    foreach ($BmealsItemsNew as $b_meal){
+
+                                    ?>
 
                                     <div class="item col-md-12">
                                         <div class="food-item">
-                                            <img src="img/breakfast_item.jpg" alt="">
-                                            <div class="price">$3.50</div>
+                                            <img src="<?php echo $b_meal['image']; ?>" alt="">
+                                            <div class="price"><?php echo $b_meal['price']; ?></div>
                                             <div class="text-content">
-                                                <h4>Kale Chips Art Party</h4>
-                                                <p>Dreamcatcher squid ennui cliche chicharros nes echo  small batch jean ditcher meal...</p>
+                                                <h4><?php echo $b_meal['name']; ?></h4>
+                                                <p><?php echo $b_meal['description']; ?></p>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="item col-md-12">
-                                        <div class="food-item">
-                                            <img src="img/lunch_item.jpg" alt="">
-                                            <div class="price">$7.25</div>
-                                            <div class="text-content">
-                                                <h4>Drink Vinegar Prism</h4>
-                                                <p>Dreamcatcher squid ennui cliche chicharros nes echo  small batch jean ditcher meal...</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <?php
 
-                                    <div class="item col-md-12">
-                                        <div class="food-item">
-                                            <img src="img/dinner_item.jpg" alt="">
-                                            <div class="price">$11.50</div>
-                                            <div class="text-content">
-                                                <h4>Taiyaki Gastro Tousled</h4>
-                                                <p>Dreamcatcher squid ennui cliche chicharros nes echo  small batch jean ditcher meal...</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    }
+                                    ?>
 
 
                                 </div>
@@ -129,6 +139,8 @@ https://templatemo.com/tm-507-victory
 
 
 
+
+
     <section class="lunch-menu">
         <div class="container">
             <div class="row">
@@ -138,38 +150,33 @@ https://templatemo.com/tm-507-victory
                             <div class="col-md-7">
                                 <h2>Lunch Menu</h2>
                                 <div id="owl-lunch" class="owl-carousel owl-theme">
-                                    <div class="item col-md-12">
-                                        <div class="food-item">
-                                            <img src="img/lunch_item.jpg" alt="">
-                                            <div class="price">$6.50</div>
-                                            <div class="text-content">
-                                                <h4>Mumble Ditch Corn</h4>
-                                                <p>Dreamcatcher squid ennui cliche chicharros nes echo  small batch jean ditcher meal...</p>
+
+                                    <?php
+                                    foreach ($LmealsItemsNew as $l_meal){
+
+                                        ?>
+
+                                        <div class="item col-md-12">
+                                            <div class="food-item">
+                                                <img src="<?php echo $l_meal['image']; ?>" alt="">
+                                                <div class="price"><?php echo $l_meal['price']; ?></div>
+                                                <div class="text-content">
+                                                    <h4><?php echo $l_meal['name']; ?></h4>
+                                                    <p><?php echo $l_meal['description']; ?></p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="item col-md-12">
-                                        <div class="food-item">
-                                            <img src="img/breakfast_item.jpg" alt="">
-                                            <div class="price">$11.75</div>
-                                            <div class="text-content">
-                                                <h4>Wayfare Lomo Core</h4>
-                                                <p>Dreamcatcher squid ennui cliche chicharros nes echo  small batch jean ditcher meal...</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item col-md-12">
-                                        <div class="food-item">
-                                            <img src="img/dinner_item.jpg" alt="">
-                                            <div class="price">$16.50</div>
-                                            <div class="text-content">
-                                                <h4>Taiyaki Gastro Tousled</h4>
-                                                <p>Dreamcatcher squid ennui cliche chicharros nes echo  small batch jean ditcher meal...</p>
-                                            </div>
-                                        </div>
-                                    </div>
+
+                                        <?php
+
+                                    }
+                                    ?>
+
+
+
                                 </div>
                             </div>
+
                             <div class="col-md-5">
                                 <div class="left-image">
                                     <img src="img/lunch_menu.jpg" alt="">
@@ -196,36 +203,29 @@ https://templatemo.com/tm-507-victory
                             <div class="col-md-7">
                                 <h2>Dinner Menu</h2>
                                 <div id="owl-dinner" class="owl-carousel owl-theme">
-                                    <div class="item col-md-12">
-                                        <div class="food-item">
-                                            <img src="img/dinner_item.jpg" alt="">
-                                            <div class="price">$8.25</div>
-                                            <div class="text-content">
-                                                <h4>Meal Apples Almonds</h4>
-                                                <p>Dreamcatcher squid ennui cliche chicharros nes echo  small batch jean ditcher meal...</p>
+
+                                    <?php
+                                    foreach ($DmealsItemsNew as $d_meal){
+
+                                        ?>
+
+                                        <div class="item col-md-12">
+                                            <div class="food-item">
+                                                <img src="<?php echo $d_meal['image']; ?>" alt="">
+                                                <div class="price"><?php echo $d_meal['price']; ?></div>
+                                                <div class="text-content">
+                                                    <h4><?php echo $d_meal['name']; ?></h4>
+                                                    <p><?php echo $d_meal['description']; ?></p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="item col-md-12">
-                                        <div class="food-item">
-                                            <img src="img/lunch_item.jpg" alt="">
-                                            <div class="price">$12.50</div>
-                                            <div class="text-content">
-                                                <h4>Ditch Corn Art</h4>
-                                                <p>Dreamcatcher squid ennui cliche chicharros nes echo  small batch jean ditcher meal...</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item col-md-12">
-                                        <div class="food-item">
-                                            <img src="img/breakfast_item.jpg" alt="">
-                                            <div class="price">$16.00</div>
-                                            <div class="text-content">
-                                                <h4>Kale Chips Art Party</h4>
-                                                <p>Dreamcatcher squid ennui cliche chicharros nes echo  small batch jean ditcher meal...</p>
-                                            </div>
-                                        </div>
-                                    </div>
+
+                                        <?php
+
+                                    }
+                                    ?>
+
+
                                 </div>
                             </div>
                         </div>

@@ -1,3 +1,14 @@
+<?php
+include_once "db_connect.php";
+
+
+$db=$GLOBALS['db'];
+$menuItemsNew = $db->getMenu();
+
+
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -41,10 +52,16 @@ https://templatemo.com/tm-507-victory
                 <!--/.navbar-header-->
                 <div id="main-nav" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="menu.php">Our Menus</a></li>
-                        <li><a href="blog.php">Blog Entries</a></li>
-                        <li><a href="contact.php">Contact Us</a></li>
+                        <?php
+                        foreach ($menuItemsNew as $m_Item){
+
+                            ?>
+                            <li><a href="<?php echo $m_Item['link']; ?> "><?php echo $m_Item['display_name']; ?> </a></li>
+                            <?php
+
+                        }
+                        ?>
+
                     </ul>
                 </div>
                 <!--/.navbar-collapse-->
