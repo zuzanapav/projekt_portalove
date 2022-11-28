@@ -336,11 +336,11 @@ https://templatemo.com/tm-507-victory
                     </div>
                 </div>
             </div>
-            <form id="contact" action="" method="get">
+            <form id="contact" action="newsletter.php" method="get">
                 <div class="row">
                     <div class="col-md-4 col-md-offset-3">
                         <fieldset>
-                            <input name="email" type="text" class="form-control" id="email" placeholder="Enter your email here..." required="">
+                            <input name="email" type="email" class="form-control" id="email" placeholder="Enter your email here..." required="">
                         </fieldset>
                     </div>
                     <div class="col-md-2">

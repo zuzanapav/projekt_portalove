@@ -6,6 +6,7 @@ $db=$GLOBALS['db'];
 $contacts=$db ->getAllContacts();
 $reservations=$db ->getAllReservations();
 $blogs=$db ->getAllBlogPosts();
+$newsletters=$db ->getAllNewsletter();
 
 
 
@@ -212,7 +213,37 @@ $blogs=$db ->getAllBlogPosts();
             </div> <!-- Second row ends -->
 
 
+            <div class="col-1">
+                <div class="panel panel-default templatemo-content-widget white-bg no-padding templatemo-overflow-hidden">
+                    <i class="fa fa-times"></i>
+                    <div class="panel-heading templatemo-position-relative"><h2 class="text-uppercase">Newsletter</h2></div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <td>Email</td>
+                                <td>Created at</td>
+                                <td>Delete</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            foreach ($newsletters as $newsletter){  ?>
+                                <tr>
+                                    <td><?php echo $newsletter['email']; ?></td>
+                                    <td><?php echo $newsletter['created_at']; ?></td>
+                                    <td><a href="delete_newsletter.php?id=<?php echo $newsletter['id']; ?>">Delete</a></td>
+                                </tr>
 
+                            <?php    }
+                            ?>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- Second row ends -->
 
 
 

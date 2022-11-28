@@ -360,6 +360,48 @@ class DB
         }
     }
 
+    public function insertNewsletter($email){
+        $dateTime = date('Y-m-d H:i:s', time());
+        $sql="INSERT into newsletter (  email,created_at,updated_at) VALUE('" . $email. "','"  . $dateTime . "','" . $dateTime . "')";
+        try {
+            $this->connection->exec($sql);
+            return true;
+        } catch (\PDOException $e) {
+            return false;
+        }
+
+    }
+
+    public function getAllNewsletter(){
+        $newsletter =[];
+        $sql="SELECT * FROM newsletter";
+        $query = $this->connection->query($sql);
+
+        while ($row = $query->fetch()) {
+            $newsletter[] = [
+                'id' => $row ['id'],
+                'email' => $row['email'],
+                'created_at' => $row['created_at']
+            ];
+
+        }
+        return $newsletter;
+    }
+
+    public function deleteNewsletter($id){
+        $sql="DELETE FROM newsletter WHERE id=".$id;
+        try {
+            $this->connection->exec($sql);
+            return true;
+        } catch (\PDOException $e) {
+            return false;
+        }
+    }
+
+
+
+
+
 
 
 
