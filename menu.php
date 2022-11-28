@@ -4,10 +4,7 @@ include_once "db_connect.php";
 
 $db=$GLOBALS['db'];
 $menuItemsNew = $db->getMenu();
-$BmealsItemsNew = $db->getMeals('Breakfast Menu');
-$LmealsItemsNew = $db->getMeals('Lunch Menu');
-$DmealsItemsNew = $db->getMeals('Dinner Menu');
-
+$typeMealsItemsNew = $db->getTypeMealsMenu();
 
 
 ?>
@@ -88,36 +85,57 @@ https://templatemo.com/tm-507-victory
     </section>
 
 
-    <section class="breakfast-menu">
+
+
+    <?php
+    foreach ($typeMealsItemsNew as $type){
+
+    ?>
+    <section class="<?php echo $type['sys_name']; ?>-menu">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
-                    <div class="breakfast-menu-content">
+                    <div class="<?php echo $type['sys_name']; ?>-menu-content">
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="left-image">
 
-                                    <img src="img/breakfast_menu.jpg" alt="">
+                                    <img src="<?php echo $type['image']; ?>" alt="<?php echo $type['alt']; ?>">
                                 </div>
                             </div>
 
                             <div class="col-md-7">
 
-                                <h2>Breakfast Menu</h2>
+                                <h2><?php echo $type['title']; ?></h2>
 
-                                <div id="owl-breakfast" class="owl-carousel owl-theme">
-                                    <?php
-                                    foreach ($BmealsItemsNew as $b_meal){
+                                <div id="owl-<?php echo $type['sys_name']; ?>" class="owl-carousel owl-theme">
+                                  <?php
+
+                                  switch ($type['id']) {
+                                      case 1:
+                                          $mealsItemsNew = $db->getMeals('Breakfast Menu');
+                                          break;
+                                      case 2:
+                                          $mealsItemsNew = $db->getMeals('Lunch Menu');
+                                          break;
+                                      case 3:
+                                          $mealsItemsNew = $db->getMeals('Dinner Menu');
+                                          break;
+
+                                  }
+
+
+                                    foreach ($mealsItemsNew as $meal){
 
                                     ?>
 
                                     <div class="item col-md-12">
                                         <div class="food-item">
-                                            <img src="<?php echo $b_meal['image']; ?>" alt="">
-                                            <div class="price"><?php echo $b_meal['price']; ?></div>
+                                            <img src="<?php echo $meal['image']; ?>" alt="">
+                                            <div class="price"><?php echo $meal['price']; ?></div>
                                             <div class="text-content">
-                                                <h4><?php echo $b_meal['name']; ?></h4>
-                                                <p><?php echo $b_meal['description']; ?></p>
+                                                <h4><?php echo $meal['name']; ?></h4>
+                                                <p><?php echo $meal['description']; ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -137,103 +155,13 @@ https://templatemo.com/tm-507-victory
         </div>
     </section>
 
+        <?php
+
+    }
+    ?>
 
 
 
-
-    <section class="lunch-menu">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <div class="lunch-menu-content">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <h2>Lunch Menu</h2>
-                                <div id="owl-lunch" class="owl-carousel owl-theme">
-
-                                    <?php
-                                    foreach ($LmealsItemsNew as $l_meal){
-
-                                        ?>
-
-                                        <div class="item col-md-12">
-                                            <div class="food-item">
-                                                <img src="<?php echo $l_meal['image']; ?>" alt="">
-                                                <div class="price"><?php echo $l_meal['price']; ?></div>
-                                                <div class="text-content">
-                                                    <h4><?php echo $l_meal['name']; ?></h4>
-                                                    <p><?php echo $l_meal['description']; ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <?php
-
-                                    }
-                                    ?>
-
-
-
-                                </div>
-                            </div>
-
-                            <div class="col-md-5">
-                                <div class="left-image">
-                                    <img src="img/lunch_menu.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="dinner-menu">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <div class="dinner-menu-content">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="left-image">
-                                    <img src="img/dinner_menu.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="col-md-7">
-                                <h2>Dinner Menu</h2>
-                                <div id="owl-dinner" class="owl-carousel owl-theme">
-
-                                    <?php
-                                    foreach ($DmealsItemsNew as $d_meal){
-
-                                        ?>
-
-                                        <div class="item col-md-12">
-                                            <div class="food-item">
-                                                <img src="<?php echo $d_meal['image']; ?>" alt="">
-                                                <div class="price"><?php echo $d_meal['price']; ?></div>
-                                                <div class="text-content">
-                                                    <h4><?php echo $d_meal['name']; ?></h4>
-                                                    <p><?php echo $d_meal['description']; ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <?php
-
-                                    }
-                                    ?>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 
 

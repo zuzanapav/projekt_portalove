@@ -139,11 +139,12 @@ class DB
         $query = $this->connection->query($sql);
 
         while ($row = $query->fetch()) {
-            $typeMealsItems = [
+            $typeMealsItems []= [
                 'id'=>$row ['id'],
                 'title'=>$row ['title'],
                 'image' => $row['image'],
-                'alt'=> $row['alt']
+                'alt'=> $row['alt'],
+                'sys_name'=> $row['sys_name']
 
 
 
