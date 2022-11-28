@@ -304,6 +304,61 @@ class DB
         }
     }
 
+    public function getAllBlogPosts(){
+        $blog_posts =[];
+        $sql="SELECT * FROM blog";
+        $query = $this->connection->query($sql);
+
+        while ($row = $query->fetch()) {
+            $blog_posts[] = [
+                'id' => $row ['id'],
+                'sys_name' => $row ['sys_name'],
+                'display_name' => $row['display_name'],
+                'author' => $row['author'],
+                'image' => $row['image'],
+                'image_blog_entries' => $row['image_blog_entries'],
+                'text' => $row['text'],
+                'created_at' => $row['created_at']
+            ];
+
+        }
+        return $blog_posts;
+    }
+
+    public function deleteBlog($id){
+        $sql="DELETE FROM blog WHERE id=".$id;
+        try {
+            $this->connection->exec($sql);
+            return true;
+        } catch (\PDOException $e) {
+            return false;
+        }
+    }
+
+
+    public function getBlogDetail($id){
+        $sql="SELECT id, sys_name, display_name,author,image,image_blog_entries,text FROM blog WHERE id=".$id;
+        $result=[];
+
+        try {
+            $query=$this->connection->query($sql);
+            $result=$query->fetchAll(\PDO::FETCH_ASSOC);
+            return $result;
+        } catch (\PDOException $e) {
+            return false;
+        }
+    }
+
+    public function updateBlog($id,$sys_name,$display_name,$author,$image,$image_blog_entries,$text){
+        $dateTime = date('Y-m-d H:i:s', time());
+        $sql="UPDATE blog SET sys_name ='".$sys_name."',display_name ='".$display_name."', author='".$author."', image ='".$image."',image_blog_entries='".$image_blog_entries."',text='".$text."',updated_at='".$dateTime."' WHERE id=".$id;
+        try {
+            $this->connection->exec($sql);
+            return true;
+        } catch (\PDOException $e) {
+            return false;
+        }
+    }
 
 
 

@@ -1,22 +1,103 @@
-<?php
-include_once "db_connect.php";
-$db=$GLOBALS['db'];
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: black;
+        }
 
-?>
+        * {
+            box-sizing: border-box;
+        }
 
-<form action="insert_blog.php" method="post">
-    Sys_name:<br>
-    <input type="text" name="sys_name" value=""/><br>
-    Display_name:<br>
-    <input type="text" name="display_name" value="" /><br>
-    Author :<br>
-    <input type="text" name="author" value="" /><br>
-    Image path:<br>
-    <input type="text" name="image" value="" /><br>
-    Image for blog entry path:<br>
-    <input type="text" name="image_blog_entries" value="" /><br>
-    Text : <br>
-    <textarea name="text"></textarea><br>
+        /* Add padding to containers */
+        .container {
+            padding: 16px;
+            background-color: white;
+        }
 
-    <input type="submit" name="submit" value="Insert">
+        /* Full-width input fields */
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        input[type=text]:focus, input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        /* Overwrite default styles of hr */
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+
+        /* Set a style for the submit button */
+        .registerbtn {
+            background-color: #1a9aaf;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+
+        .registerbtn:hover {
+            opacity: 1;
+        }
+
+        /* Add a blue text color to links */
+        a {
+            color: dodgerblue;
+        }
+
+        /* Set a grey background color and center the text of the "sign in" section */
+        .signin {
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<form action="insert_blog.php"method="post">
+    <div class="container">
+        <h1>Insert blog post</h1>
+        <p>Please fill in this form to insert new blog post.</p>
+        <hr>
+
+        <label for="sys_name"><b>Sys name</b></label>
+        <input type="text" placeholder="Enter sys name" name="sys_name" value="">
+
+        <label for="display_name"><b>Display name</b></label>
+        <input type="text" placeholder="Enter display name" name="display_name" value="">
+
+        <label for="author"><b>Author</b></label>
+        <input type="text" placeholder="Enter author" name="author" value="">
+
+        <label for="image_path"><b>Image path</b></label>
+        <input type="text" placeholder="Enter image path" name="image" value="">
+
+        <label for="image__blog_entries_path"><b>Image path for blog entry</b></label>
+        <input type="text" placeholder="Enter image path for blog entry" name="image_blog_entries" value="">
+
+        <label for="text"><b>Text</b></label><br><br>
+        <textarea name="text"></textarea>
+
+        <button type="submit" name ="submit" class="registerbtn" value="Insert">Insert</button>
+    </div>
+
 </form>
+
+</body>
+</html>
+

@@ -2,10 +2,11 @@
 include_once "db_connect.php";
 $db=$GLOBALS['db'];
 
-$reservationDetail=$db->getReservationDetail($_GET['id']);
+$blogDetail=$db->getBlogDetail($_GET['id']);
 
 
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -28,7 +29,7 @@ $reservationDetail=$db->getReservationDetail($_GET['id']);
         }
 
         /* Full-width input fields */
-        input[type=text], input[type=password],input[type=phone],input[type=time],input[type=number]{
+        input[type=text], input[type=password] {
             width: 100%;
             padding: 15px;
             margin: 5px 0 22px 0;
@@ -37,7 +38,7 @@ $reservationDetail=$db->getReservationDetail($_GET['id']);
             background: #f1f1f1;
         }
 
-        input[type=text]:focus, input[type=password],input[type=phone],input[type=time],input[type=number]:focus {
+        input[type=text]:focus, input[type=password]:focus {
             background-color: #ddd;
             outline: none;
         }
@@ -78,36 +79,30 @@ $reservationDetail=$db->getReservationDetail($_GET['id']);
 </head>
 <body>
 
-<form action="update_reservation.php" method="post">
+<form action="update_blog.php" method="post">
     <div class="container">
-        <h1>Update reservation</h1>
-        <p>Form for updating reservation.</p>
+        <h1>Update blog post</h1>
+        <p>Form for updating blog post.</p>
         <hr>
 
-        <label for="from"><b>Name</b></label>
-        <input type="text"  name="name" value="<?php echo $reservationDetail[0]['name'];?>">
+        <label for="sys_name"><b>Sys name</b></label>
+        <input type="text"  name="sys_name" value="<?php echo $blogDetail[0]['sys_name'];?>">
 
-        <label for="phone"><b>Phone</b></label>
-        <input type="phone"  name="phone" value="<?php echo $reservationDetail[0]['phone'];?>">
+        <label for="display_name"><b>Display name</b></label>
+        <input type="text"  name="display_name" value="<?php echo $blogDetail[0]['display_name'];?>">
 
-        <label for="day"><b>Day</b></label>
-        <input type="text"  name="day" value="<?php echo $reservationDetail[0]['day'];?>">
+        <label for="author"><b>Author</b></label>
+        <input type="text"  name="author" value="<?php echo $blogDetail[0]['author'];?>">
 
-        <label for="time"><b>Time</b></label>
-        <input type="time"  name="time" value="<?php echo $reservationDetail[0]['time'];?>">
+        <label for="image_path"><b>Image path</b></label>
+        <input type="text"  name="image" value="<?php echo $blogDetail[0]['image'];?>">
 
-        <label for="number_of_people"><b>Number of people</b></label>
-        <input type="number"  name="number_of_people" value="<?php echo $reservationDetail[0]['number_of_people'];?>">
+        <label for="image__blog_entries_path"><b>Image path for blog entry</b></label>
+        <input type="text"  name="image_blog_entries" value="<?php echo $blogDetail[0]['image_blog_entries'];?>">
 
-        <label for="status" id="status"><b>Status</b></label><br><br>
-        <select name="status" id="status" >
-            <option value="<?php echo $reservationDetail[0]['status']; ?>" selected><?php echo $reservationDetail[0]['status'];?></option>
-            <option value="confirmed">confirmed</option>
-            <option value="new">new</option>
-            <option value="banned">banned</option>
-            <option value="to_change">to change</option>
-        </select>
-        <input type="hidden" name="id" value="<?php echo $reservationDetail[0]['id'];?>"><br>
+        <label for="text"><b>Text</b></label><br><br>
+        <textarea name="text"><?php echo $blogDetail[0]['text'];?></textarea>
+        <input type="hidden" name="id" value="<?php echo $blogDetail[0]['id'];?>"><br>
         <button type="submit" name ="submit" class="registerbtn" value="Update">Update</button>
     </div>
 
