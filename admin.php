@@ -7,6 +7,7 @@ $contacts=$db ->getAllContacts();
 $reservations=$db ->getAllReservations();
 $blogs=$db ->getAllBlogPosts();
 $newsletters=$db ->getAllNewsletter();
+$weeklyfoods=$db ->getAllWeeklyFood();
 
 
 
@@ -63,6 +64,7 @@ $newsletters=$db ->getAllNewsletter();
                 <li><a href="blog.php"><i class="fa fa-book fa-fw"></i>Blog</a></li>
                 <li><a href="contact.php"><i class="fa fa-users fa-fw"></i>Contact</a></li>
                 <li><a href="insert_blog_form.php"><i class="fa fa-sliders fa-fw"></i>Insert blog post</a></li>
+                <li><a href="insert_weekly_food_form.php"><i class="fa fa-sliders fa-fw"></i>Insert weekly food</a></li>
 
             </ul>
         </nav>
@@ -120,7 +122,7 @@ $newsletters=$db ->getAllNewsletter();
                         </div>
                     </div>
                 </div>
-            </div> <!-- Second row ends -->
+            </div>
 
             <div class="templatemo-flex-row flex-content-row">
 
@@ -166,7 +168,7 @@ $newsletters=$db ->getAllNewsletter();
                         </div>
                     </div>
                 </div>
-            </div> <!-- Second row ends -->
+            </div>
 
             <div class="templatemo-flex-row flex-content-row">
 
@@ -210,9 +212,55 @@ $newsletters=$db ->getAllNewsletter();
                         </div>
                     </div>
                 </div>
-            </div> <!-- Second row ends -->
+            </div>
+
+            <div class="templatemo-flex-row flex-content-row">
+
+                <div class="col-1">
+                    <div class="panel panel-default templatemo-content-widget white-bg no-padding templatemo-overflow-hidden">
+                        <i class="fa fa-times"></i>
+                        <div class="panel-heading templatemo-position-relative"><h2 class="text-uppercase">Weekly food</h2></div>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <td>Display name</td>
+                                    <td>Price</td>
+                                    <td>Food name</td>
+                                    <td>Description</td>
+                                    <td>Image</td>
+                                    <td>Created_at</td>
+                                    <td>Update</td>
+                                    <td>Delete</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                foreach ($weeklyfoods as $weeklyfood){  ?>
+                                    <tr>
+                                        <td><?php echo $weeklyfood['display_name']; ?></td>
+                                        <td><?php echo $weeklyfood['price']; ?> €</td>
+                                        <td><?php echo $weeklyfood['food_name']; ?></td>
+                                        <td><?php echo $weeklyfood['description']; ?></td>
+                                        <td><?php echo $weeklyfood['image']; ?></td>
+                                        <td><?php echo $weeklyfood['created_at']; ?></td>
+                                        <td><a href="delete_weekly_food.php?id=<?php echo $weeklyfood['id']; ?>">Delete</a></td>
+                                        <td><a href="update_weekly_food_form.php?id=<?php echo $weeklyfood['id']; ?>">Update</a></td>
+                                    </tr>
+
+                                <?php    }
+                                ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
+
+            <div class="templatemo-flex-row flex-content-row">
             <div class="col-1">
                 <div class="panel panel-default templatemo-content-widget white-bg no-padding templatemo-overflow-hidden">
                     <i class="fa fa-times"></i>
@@ -243,7 +291,10 @@ $newsletters=$db ->getAllNewsletter();
                     </div>
                 </div>
             </div>
-        </div> <!-- Second row ends -->
+        </div>
+
+
+        </div>
 
 
 

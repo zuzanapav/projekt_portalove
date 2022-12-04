@@ -398,6 +398,75 @@ class DB
         }
     }
 
+    public function getAllWeeklyFood(){
+        $weeklyfood =[];
+        $sql="SELECT * FROM weekly_food";
+        $query = $this->connection->query($sql);
+
+        while ($row = $query->fetch()) {
+            $weeklyfood[] = [
+                'id' => $row ['id'],
+                'sys_name' => $row ['sys_name'],
+                'display_name' => $row['display_name'],
+                'price' => $row['price'],
+                'food_name' => $row['food_name'],
+                'description' => $row['description'],
+                'image' => $row['image'],
+                'created_at' => $row['created_at'],
+                'updated_at' => $row['updated_at']
+            ];
+
+        }
+        return $weeklyfood;
+    }
+
+    public function getWeeklyFoodDetail($id){
+        $sql="SELECT id,sys_name, display_name,price,food_name,description,image FROM weekly_food WHERE id=".$id;
+        $result=[];
+
+        try {
+            $query=$this->connection->query($sql);
+            $result=$query->fetchAll(\PDO::FETCH_ASSOC);
+            return $result;
+        } catch (\PDOException $e) {
+            return false;
+        }
+    }
+
+    public function updateWeeklyFood($id,$sys_name,$display_name,$price,$food_name,$description,$image){
+        $dateTime = date('Y-m-d H:i:s', time());
+        $sql="UPDATE weekly_food SET sys_name ='".$sys_name."',display_name ='".$display_name."', price='".$price."', food_name ='".$food_name."',description='".$description."',image='".$image."',updated_at='".$dateTime."' WHERE id=".$id;
+        try {
+            $this->connection->exec($sql);
+            return true;
+        } catch (\PDOException $e) {
+            return false;
+        }
+    }
+
+    public function deleteWeeklyFood($id){
+        $sql="DELETE FROM weekly_food WHERE id=".$id;
+        try {
+            $this->connection->exec($sql);
+            return true;
+        } catch (\PDOException $e) {
+            return false;
+        }
+    }
+
+    public function insertWeeklyFood($sys_name,$display_name,$price,$food_name,$description,$image){
+        $dateTime = date('Y-m-d H:i:s', time());
+        $sql="INSERT into weekly_food ( sys_name, display_name, price, food_name,description,image,created_at,updated_at) VALUE('" . $sys_name. "','" . $display_name. "','". $price. "','". $food_name. "','". $description. "','". $image. "','" . $dateTime . "','" . $dateTime . "')";
+        try {
+            $this->connection->exec($sql);
+            return true;
+        } catch (\PDOException $e) { echo $e;
+            return false;
+        }
+
+    }
+
+
 
 
 
